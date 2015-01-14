@@ -1,0 +1,3 @@
+- improve cs
+- get practical everyday use out of web sockets
+- close the gap between a page loading, making ajax requests, and getting responses

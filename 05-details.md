@@ -1,0 +1,6 @@
+- detailed walkthrough
+- cs uses hbs for templates, with data passed by controller
+- when a Promise is present in the data, don't wait for it to resolve
+- bind a socket event that waits for the client to connect
+- once the client establishes a socket connection, send the data when the promises resolve
+- delete the socket connection handler
