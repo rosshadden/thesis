@@ -32,9 +32,9 @@ Dr. Paul Talaga, Professor
 	Division of Graduate Studies and Research of the University of Cincinnati
 
 	in partial fulfillment of the requirements for the degree of
-	
+
 	MASTER OF SCIENCE
-	
+
 	in the Department of Computer Science of the College of Engineering and Applied Science
 
 	November 13, 2014
@@ -45,4 +45,3 @@ Dr. Paul Talaga, Professor
 
 # Acknowledgments
 This is the acknowledgements section.
-
