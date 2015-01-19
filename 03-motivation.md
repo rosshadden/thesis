@@ -1,4 +1,5 @@
 ## TODO
+
 - improve cs
 - get practical everyday use out of web sockets
 - close the gap between a page loading, making ajax requests, and getting responses
@@ -7,6 +8,8 @@
 	- best practices
 		- scripts at `</body>`
 
+
+## Motivation
 
 `AJAX` calls are made from `JavaScript` scripts, which initiate an asynchronous call to a specified endpoint.
 Once the data is received, a callback gets executed which has access to the data (or error) returned by the server, as well as some request and response metadata.
@@ -27,8 +30,14 @@ It seems reasonable to surmise that this gap may in fact be mitigated, and there
 
 Another factor in the above process is that of request latency.
 The time it takes for an `HTTP` message to be sent and received is a well-known bottleneck---one which can really only be abated by obtaining a faster connection to the Internet.
-Since the request latency is not easily controlled, the only sensible option is to limit the number of requests.
+
+
+> Cornerstone
+Together with colleague Sean Clark, I made a back-end web framework called `Cornerstone`.
+Built on `node.js`---the server-side `JavaScript` platform---`Cornerstone` transpiles
+
 
 ## NOTE: these should go in the /details section
+> Since the request latency itself is not easily controlled, the only sensible option is to limit the number of requests.
 > The process outlined above requires `n+1` `HTTP` requests to a web server, where `n` is the number of `AJAX` requests, and naturally `n+1` `HTTP` responses.
 > This means that there are `2n+2`
