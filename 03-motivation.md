@@ -1,6 +1,8 @@
 ## TODO
 
-- improve cs
+- CS
+	- introduce
+	- improve
 - get practical everyday use out of web sockets
 - close the gap between a page loading, making ajax requests, and getting responses
 - good place for references!
@@ -30,11 +32,18 @@ It seems reasonable to surmise that this gap may in fact be mitigated, and there
 
 Another factor in the above process is that of request latency.
 The time it takes for an `HTTP` message to be sent and received is a well-known bottleneck---one which can really only be abated by obtaining a faster connection to the Internet.
+If the number of requests being made could be reduced, however, the total latency would inherently decrease as well.
 
 
 > Cornerstone
+
 Together with colleague Sean Clark, I made a back-end web framework called `Cornerstone`.
-Built on `node.js`---the server-side `JavaScript` platform---`Cornerstone` transpiles
+Built on `node.js`---the server-side `JavaScript` platform---`Cornerstone` makes writing APIs and web servers much more convenient.
+It transpiles code written using features from ECMAScript 6 (ES6) to code that can run in current, modern JavaScript environments, such as the `v8` JavaScript runtime that powers `node.js`.
+This means that developers are able to employ the use of syntax and concepts from newer versions of JavaScript that are not necessarily implemented yet in many environments.
+
+Having direct access to a framework like `Cornerstone` as a laboratory put me in a convenient position for approaching some of the shortcomings discussed above.
+Not only could I experiment with implementing useful features, but I could also try them in large-scale applications to see how they may apply to such situations.
 
 
 ## NOTE: these should go in the /details section
