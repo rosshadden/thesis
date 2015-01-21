@@ -4,7 +4,6 @@
 	- introduce
 	- improve
 - get practical everyday use out of web sockets
-- close the gap between a page loading, making ajax requests, and getting responses
 - good place for references!
 	- browser loading order
 	- best practices
@@ -33,6 +32,8 @@ It seems reasonable to surmise that this gap may in fact be mitigated, and there
 Another factor in the above process is that of request latency.
 The time it takes for an `HTTP` message to be sent and received is a well-known bottleneck---one which can really only be abated by obtaining a faster connection to the Internet.
 If the number of requests being made could be reduced, however, the total latency would inherently decrease as well.
+Of course, the server _could_ just do all of the rendering itself, which would limit the number of requests down to one.
+However this is potentially even worse than making too many requests, because the user would see only a blank white page until the server returns a response.
 
 
 > Cornerstone
@@ -43,10 +44,5 @@ It transpiles code written using features from ECMAScript 6 (ES6) to code that c
 This means that developers are able to employ the use of syntax and concepts from newer versions of JavaScript that are not necessarily implemented yet in many environments.
 
 Having direct access to a framework like `Cornerstone` as a laboratory put me in a convenient position for approaching some of the shortcomings discussed above.
-Not only could I experiment with implementing useful features, but I could also try them in large-scale applications to see how they may apply to such situations.
-
-
-## NOTE: these should go in the /details section
-> Since the request latency itself is not easily controlled, the only sensible option is to limit the number of requests.
-> The process outlined above requires `n+1` `HTTP` requests to a web server, where `n` is the number of `AJAX` requests, and naturally `n+1` `HTTP` responses.
-> This means that there are `2n+2`
+Not only could I experiment with implementing useful features, but I could also try them in large-scale applications to see how well they may affect such situations.
+This symbiotic relationship between `Cornerstone` and its features has served as another motivation of this study, as any gains in this territory would directly benefit the framework.

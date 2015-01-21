@@ -8,4 +8,9 @@
 - delete the socket connection handler
 
 
+> Since the request latency itself is not easily controlled, the only sensible option is to limit the number of requests.
+> The process outlined above requires `n+1` `HTTP` requests to a web server, where `n` is the number of `AJAX` requests, and naturally `n+1` `HTTP` responses.
+> This means that there are `2n+2`
+
+
 ## Details
