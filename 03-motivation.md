@@ -21,7 +21,7 @@ It's not until the client has received the entire response that it starts reques
 Next the browser makes requests for all of the external stylesheets referenced in the `<link>` tags in the `<head>` section of the `HTML` page, and any `<script>` tags that may be there as well.
 After these requests have been made (though not necessarily before the responses have been received), browsers make requests for `<script>` and `<img>` tags within the `<body>` section of the page.
 It is not until all of these resources have been loaded by the browser that the scripts begin to execute.
-It is worth noting that any `<script>` tags in `<head>` would actually execute __before__ the rest of the page has finished loading, however it is a well-established best practice to place all scripts at the end of the `<body>` section [__REF__].
+It is worth noting that any `<script>` tags in `<head>` would actually execute _before_ the rest of the page has finished loading, however it is a well-established best practice to place all scripts at the end of the `<body>` section [__REF__].
 This is because developers generally want to execute code only once the entire page has been rendered and its resources fetched, in order to avoid such occurrences as the dreaded "Flash Of Unstyled Content" (FOUC) and other things that negatively impact user experience [__REF__].
 
 After all external resources have been loaded, the `JavaScript` is executed and `AJAX` requests may finally be initiated.
