@@ -39,8 +39,8 @@ However this is potentially even worse than making too many requests, because th
 > Cornerstone
 
 Together with colleague Sean Clark, I made a back-end web framework called `Cornerstone`.
-Built on `node.js`---the server-side `JavaScript` platform---`Cornerstone` makes writing APIs and web servers much more convenient.
-It transpiles code written using features from ECMAScript 6 (ES6) to code that can run in current, modern JavaScript environments, such as the `v8` JavaScript runtime that powers `node.js`.
+Built on `Node.js`---the server-side `JavaScript` platform---`Cornerstone` makes writing APIs and web servers much more convenient.
+It transpiles code written using features from ECMAScript 6 (ES6) to code that can run in current, modern JavaScript environments, such as the `v8` JavaScript runtime that powers `Node.js`.
 This means that developers are able to employ the use of syntax and concepts from newer versions of JavaScript that are not necessarily implemented yet in many environments.
 
 Having direct access to a framework like `Cornerstone` as a laboratory put me in a convenient position for approaching some of the shortcomings discussed above.
