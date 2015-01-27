@@ -17,9 +17,9 @@
 
 There are a lot of pieces working together to make this work.
 The Cornerstone Node.js framework is itself built on top of another popular framework, `Express`, which gives it a very solid foundation in terms of a powerful web framework.
-This has served as a great origin for adding even more convenient features, especially when coupled with transpiling the code with `6to5`, which provides access to many useful parts of ES6.
+This has served as a great origin for adding even more convenient features, especially when coupled with transpiling the code with `6to5`, providing access to many useful parts of ES6.
 
-`Promises` are one such feature.
+`Promises` are one such useful feature.
 Promises are objects used for deferred and asynchronous computations [[__REF__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)].
 They make writing asynchronous code much more favorable and manageable than the callback-heavy alternative, and allow for passing around composable handlers for success and failure states of functions.
 
@@ -55,7 +55,7 @@ This results in the following being rendered to the client:
 <p>world</p>
 ```
 
-When one of the data values passed to a view template is a promise, however, it initiates the streaming feature.
+When one or more of the data values passed to a view template is a promise, however, it initiates the streaming feature.
 Consider the following example:
 
 ```js
@@ -85,4 +85,13 @@ If `{{bar}}` were to be used in the template anyway, it would just be rendered a
 Instead what happens is that Cornerstone serves the page before the promise has been resolved (which in this case means before the 1000 ms timeout has finished).
 
 Once the client loads the page, it initiates a web socket connection to the server, using `socket.io` [[__REF__]](http://socket.io/).
-There is an authorization handshake stage of the socket connection in which Cornerstone establishes a bidirectional mapping between sessions and web socket connections, so that the socket connection of any given client may be accessed within any route handler.
+There is an authorization handshake stage at the beginning of the socket connection in which Cornerstone establishes a bidirectional mapping between sessions and web socket connections, so that the socket connection of any given client may be accessed within any route handler.
+This bidirectional mapping is how Cornerstone knows which socket to send data to for each request.
+For each promise, the server binds a one-off listener for web socket connections, which tests for whether the connected client is the same client that is waiting for data.
+When this test passes, the server attaches a success handler for each promise that emits the resolved value of the promise to the client, through the socket connection.
+
+> NOTE:
+> Once the data gets to the client, they can do whatever the heck they want with it.
+> In my test case I have blah blah blah
+> btw I can fluff this up by explaining WHY I do some things.
+> "this is so that..." etc etc
