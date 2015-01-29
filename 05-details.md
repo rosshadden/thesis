@@ -25,6 +25,9 @@ This has served as a great origin for adding even more convenient features, espe
 Promises are objects used for deferred and asynchronous computations [[__REF__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)].
 They make writing asynchronous code much more favorable and manageable than the callback-heavy alternative, and allow for passing around composable handlers for success and failure states of functions.
 
+
+### Process
+
 Normally when data is passed from a controller to a `Handlebars` view template in Cornerstone, the values are substituted in-place when the template is rendered.
 For example:
 
@@ -86,16 +89,18 @@ In this situation, `bar` would not actually be rendered to the client.
 If `{{bar}}` were to be used in the template anyway, it would just be rendered as `[object Object]`, which is the result of JavaScript coercing a `promise` into a `string`.
 Instead what happens is that Cornerstone serves the page before the promise has been resolved (which in this case means before the 5000 millisecond timeout has finished).
 
-Once the client loads the page, it initiates a web socket connection to the server, using `socket.io` [[__REF__]](http://socket.io/).
-There is an authorization handshake stage at the beginning of the socket connection in which Cornerstone establishes a bidirectional mapping between sessions and web socket connections, so that the socket connection of any given client may be accessed within any route handler.
+Once the client loads the page, it initiates a WebSocket connection to the server, using `socket.io` [[__REF__]](http://socket.io/).
+There is an authorization handshake stage at the beginning of the socket connection in which Cornerstone establishes a bidirectional mapping between sessions and WebSocket connections, so that the socket connection of any given client may be accessed within any route handler.
 This bidirectional mapping is how Cornerstone knows which socket to send data to for each request.
 It also provides a way to access a client's session data from the scope of a socket connection, though that functionality does not come to play within this workflow.
-For each promise, the server binds a one-off listener for web socket connections, which tests for whether the connected client is the same client that is waiting for data.
+For each promise, the server binds a one-off listener for WebSocket connections, which tests for whether the connected client is the same client that is waiting for data.
 When this test passes, the server attaches a success handler for each promise that emits the resolved value of the promise to the client, through the socket connection.
 
 Once the data gets to the client, a developer has several options on how to use the data.
-Since the data is just being sent through a web socket connection, the communication events may be bound to by the client in JavaScript, which provides access to the raw data being sent by the server.
-Another method of using the data sent via the web socket transport is to use Cornerstone's `{{{stream}}}` Handlebars helper.
+Since the data is just being sent through a WebSocket connection, the communication events may be bound to by the client in JavaScript, which provides access to the raw data being sent by the server.
+This is the most powerful option, as the client can do whatever it wants with the data.
+
+Another method of using the data sent via the WebSocket transport is to use Cornerstone's `{{{stream}}}` Handlebars helper.
 This helper is very simple in implementation.
 It just returns a `<var>` HTML tag with a `data-promise` attribute set to the key of the promise.
 
@@ -113,10 +118,10 @@ The above view markup would be rendered and served to the client as the followin
 
 The purpose of the `<var>` tags is to serve as a placeholder for the deferred data to be rendered in.
 When a client receives a socket broadcast with the data for `bar`, it replaces this placeholder with the received data.
+The way that the placeholder replacement works is by using the key sent in the WebSocket broadcast to select the `<var>` tag with the matching `data-promise` attribute.
+This HTML-output method does not work well for all situations, of course, but when HTML or raw data needs to be displayed it is rather convenient.
 
 
-> SCRATCHPAD
+### Explanation
 
-> The way that the placeholder replacement works is [[by doing stuff with selectors and stuff]]
-
-> Establishing the web socket connection is an event that happens once per page
+> Establishing the WebSocket connection is an event that happens once per page
