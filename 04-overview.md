@@ -1,5 +1,3 @@
-> NOTE: possibly combine with the following file
-
 ## Overview
 
 As discussed previously, the primary motivation for this study was to reduce a rather large latency gap between serving an initial web page and providing it data.

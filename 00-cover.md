@@ -1,50 +1,47 @@
-### title
+\singlespacing
+
+#### title
 
 A Socket-based Approach to Sending Dynamic Data
 
 
-### author
+#### author
 
 Ross Andrew Hadden
 
 
-### prevdegrees
+#### prevdegrees
 
 B.S., University of Cincinnati (2014)
 
 
-### department
+#### department
 
 Department of Computer Science
 
 
-### degree
+#### degree
 
-Master of Science in Computer Science
-
-
-### degree date
-
-May 2015
+Master of Science in Computer Science, May 2015
 
 
-### thesis date
+#### thesis date
 
 May xx, 2015
 
 
-### supervisor
+#### supervisor
 
 Dr. Paul Talaga, Professor
 
 
-### committee
+#### committee
 
 - Dr. Fred Annexstein, Professor
 - Dr. John Franco, Professor
 
 
-### titlepage
+#### titlepage
 
 > A Socket-based Approach to Sending Dynamic Data
 
@@ -61,9 +58,11 @@ Dr. Paul Talaga, Professor
 > by
 > Ross Andrew Hadden
 
-> Thesis Advisor and Committee Chair:  Dr. Paul Talaga
+> Thesis Adviser and Committee Chair:  Dr. Paul Talaga
 
 
-### Acknowledgments
+#### Acknowledgments
 
-This is the acknowledgements section.
+This is the acknowledgments section.
+
+\doublespacing

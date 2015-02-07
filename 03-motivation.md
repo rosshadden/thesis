@@ -1,16 +1,19 @@
-## TODO
+## Motivation
 
-- CS
-	- introduce
-	- improve
+### TODO
+
+\singlespacing
+
 - get practical everyday use out of web sockets
-- good place for references!
+- references
 	- browser loading order
 	- best practices
 		- scripts at `</body>`
 
+--------------------------------
 
-## Motivation
+\doublespacing
+
 
 `AJAX` calls are made from `JavaScript` scripts, which initiate an asynchronous call to a specified endpoint.
 Once the data is received, a callback gets executed which has access to the data (or error) returned by the server, as well as some request and response metadata.

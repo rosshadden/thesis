@@ -1,0 +1,1 @@
+let &l:makeprg = 'pandoc -R -f markdown -o /tmp/thesis.pdf --toc -H thesis.sty -V geometry:margin=1in -V fontsize=12pt [0-9]*.md'

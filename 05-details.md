@@ -1,4 +1,8 @@
-## TODO
+## Details
+
+### TODO
+
+\singlespacing
 
 - detailed walkthrough
 - cs uses hbs for templates, with data passed by controller
@@ -9,13 +13,14 @@
 - I can fluff this up by explaining WHY I do some things.
 	- "this is so that..." etc etc
 
-
 > Since the request latency itself is not easily controlled, the only sensible option is to limit the number of requests.
-> The process outlined above requires `n+1` `HTTP` requests to a web server, where `n` is the number of `AJAX` requests, and naturally `n+1` `HTTP` responses.
-> This means that there are `2n+2`
+> The process outlined above requires $n + 1$ `HTTP` requests to a web server, where $n$ is the number of `AJAX` requests, and naturally $n + 1$ `HTTP` responses.
+> This means that there are $2n + 2$
 
+--------------------------------
 
-## Details
+\doublespacing
+
 
 There are a lot of pieces working together to make this work.
 The Cornerstone Node.js framework is itself built on top of another popular framework, `Express`, which gives it a very solid foundation in terms of a powerful web framework.
