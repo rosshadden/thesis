@@ -1,4 +1,4 @@
-## Outline
+# Outline
 
 1. cover page
 2. abstract

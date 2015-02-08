@@ -1,17 +1,8 @@
-## Details
+# Details
 
-### TODO
+## TODO
 
 \singlespacing
-
-- detailed walkthrough
-- cs uses hbs for templates, with data passed by controller
-- when a Promise is present in the data, don't wait for it to resolve
-- bind a socket event that waits for the client to connect
-- once the client establishes a socket connection, send the data when the promises resolve
-- delete the socket connection handler
-- I can fluff this up by explaining WHY I do some things.
-	- "this is so that..." etc etc
 
 > Since the request latency itself is not easily controlled, the only sensible option is to limit the number of requests.
 > The process outlined above requires $n + 1$ `HTTP` requests to a web server, where $n$ is the number of `AJAX` requests, and naturally $n + 1$ `HTTP` responses.
@@ -31,7 +22,7 @@ Promises are objects used for deferred and asynchronous computations [[__REF__](
 They make writing asynchronous code much more favorable and manageable than the callback-heavy alternative, and allow for passing around composable handlers for success and failure states of functions.
 
 
-### Process
+## Process
 
 Normally when data is passed from a controller to a `Handlebars` view template in Cornerstone, the values are substituted in-place when the template is rendered.
 For example:
@@ -100,6 +91,7 @@ This bidirectional mapping is how Cornerstone knows which socket to send data to
 It also provides a way to access a client's session data from the scope of a socket connection, though that functionality does not come to play within this workflow.
 For each promise, the server binds a one-off listener for WebSocket connections, which tests for whether the connected client is the same client that is waiting for data.
 When this test passes, the server attaches a success handler for each promise that emits the resolved value of the promise to the client, through the socket connection.
+It then destroys the listener, which has at this point served its intended purpose and is no longer necessary.
 
 Once the data gets to the client, a developer has several options on how to use the data.
 Since the data is just being sent through a WebSocket connection, the communication events may be bound to by the client in JavaScript, which provides access to the raw data being sent by the server.
@@ -127,6 +119,6 @@ The way that the placeholder replacement works is by using the key sent in the W
 This HTML-output method does not work well for all situations, of course, but when HTML or raw data needs to be displayed it is rather convenient.
 
 
-### Explanation
+## Explanation
 
 > Establishing the WebSocket connection is an event that happens once per page

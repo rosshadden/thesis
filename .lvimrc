@@ -1,1 +1,17 @@
+" do stuff you want to do on every buffer enter event
+
+" guard to end loading if it has been loaded for the currently edited file
+if g:localvimrc_sourced_once_for_file
+	finish
+endif
+
+" do stuff you want to do only once for a edited file
+
 let &l:makeprg = 'pandoc -R -f markdown -o /tmp/thesis.pdf --toc -H thesis.sty -V geometry:margin=1in -V fontsize=12pt [0-9]*.md'
+
+" guard to end loading if it has been loaded for the running vim instance
+if g:localvimrc_sourced_once
+	finish
+endif
+
+" do stuff you want to do only once for a running vim instance

@@ -1,4 +1,4 @@
-## Background
+# Background
 
 The Internet has a long and storied history, but over the past few decades the HyperText Transfer Protocol (`HTTP`) has remained one of the most popular transports for data communication.
 `HTTP` (as well as the SSL-encrypted variant `HTTPS`, for that matter) is the protocol that most web servers and browsers use to send data back and forth to each other.

@@ -1,6 +1,6 @@
-## Motivation
+# Motivation
 
-### TODO
+## TODO
 
 \singlespacing
 

@@ -1,4 +1,4 @@
-## Overview
+# Overview
 
 As discussed previously, the primary motivation for this study was to reduce a rather large latency gap between serving an initial web page and providing it data.
 This was achieved by employing the use of web sockets in a creative way.
