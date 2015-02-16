@@ -1,6 +1,6 @@
 # Details
 
-## TODO
+## \color{red}{TODO}
 
 \singlespacing
 

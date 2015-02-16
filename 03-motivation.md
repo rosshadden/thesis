@@ -1,6 +1,6 @@
 # Motivation
 
-## TODO
+## \color{red}{TODO}
 
 \singlespacing
 
