@@ -40,3 +40,11 @@ In 2011, a standard was released for yet another method of transporting data bet
 This protocol---known as the WebSocket protocol---allows for full-duplex communications channels over a single `TCP` connection [__REF__].
 Clients open a bidirectional connection with a server which is not terminated after the typical request-response cycle.
 Instead, the connection remains open, and either side may broadcast communications at any point.
+
+In addition to bringing some newly conceivable workflows into fruition, the WebSocket protocol also made it possible to better some that were already achievable before its inception.
+For instance, instead of a page making ten `AJAX` requests, it could receive all of the data from those ten requests through one single ongoing WebSocket connection.
+Unfortunately the WebSocket protocol never really seemed to flourish outside of a few niche areas, such as game development [__REF__].
+This is likely due to Microsoft Internet Explorer not supporting it until version 10, which came out a year after the finalized WebSocket specification.
+Even though Mozilla Firefox and Google Chrome had supported the protocol months before it was even finalized, in 2011 Internet Explorer still had the highest browser market share, and thus supporting it was deemed necessary by many developers [[__REF__](http://gs.statcounter.com/)].
+
+![Desktop browser market share, Q3 2008 to Q1 2015](figures/StatCounter-browser-ww-quarterly-20083-20151.jpg "Desktop browser market share, Q3 2008 to Q1 2015")
