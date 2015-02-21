@@ -1,2 +1,27 @@
 \usepackage{setspace}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+
 \doublespacing
+
+\usepgfplotslibrary{units}
+
+\pgfplotsset{
+	width=\textwidth,
+	compat=newest,
+	% plot defaults
+	defaults/.style={
+		% axes
+		xtick=data,
+		ylabel={Load time},
+		y unit=\si{\ms},
+		% grid
+		scaled ticks=false,
+		tick align = outside,
+		grid=major,
+		grid style={ dashed, gray!30 },
+		% misc
+		line width=2pt,
+		legend pos=north west,
+	},
+}

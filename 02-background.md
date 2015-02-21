@@ -47,4 +47,4 @@ Unfortunately the WebSocket protocol never really seemed to flourish outside of 
 This is likely due to Microsoft Internet Explorer not supporting it until version 10, which came out a year after the finalized WebSocket specification.
 Even though Mozilla Firefox and Google Chrome had supported the protocol months before it was even finalized, in 2011 Internet Explorer still had the highest browser market share, and thus supporting it was deemed necessary by many developers [[__REF__](http://gs.statcounter.com/)].
 
-![Desktop browser market share, Q3 2008 to Q1 2015](figures/StatCounter-browser-ww-quarterly-20083-20151.jpg "Desktop browser market share, Q3 2008 to Q1 2015")
+![Desktop browser market share, Q3 2008 to Q1 2015](images/StatCounter-browser-ww-quarterly-20083-20151.jpg "Desktop browser market share, Q3 2008 to Q1 2015")
