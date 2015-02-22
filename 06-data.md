@@ -50,47 +50,98 @@ As the server receives the responses for the additional data, it sends it to the
 
 ### Base
 
+\pgfplotstableread{data/base.dat} \dataBase
+
+\begin{figure}[h!]
+	\begin{tikzpicture}
+		\begin{axis}[
+			defaults,
+			title={Base time to load things},
+			% axes
+			xlabel={Base},
+			xmajorticks=false,
+		]
+
+			% server
+			\addplot+[
+				smooth,
+				color=red,
+				mark=square
+			]
+				table[y = server] from \dataBase;
+			\addlegendentry{Server}
+
+			% ajax
+			\addplot+[
+				smooth,
+				color=blue,
+				mark=triangle
+			]
+				table[y = ajax] from \dataBase;
+			\addlegendentry{AJAX}
+
+			% stream
+			\addplot+[
+				smooth,
+				color=violet,
+				mark=o
+			]
+				table[y = stream] from \dataBase;
+			\addlegendentry{Stream}
+
+		\end{axis}
+	\end{tikzpicture}
+
+	\caption{Base workflow data.}
+\end{figure}
+
 
 ### Timeout
 
+some text
+
 \pgfplotstableread{data/timeout.dat} \dataTimeout
 
-\begin{tikzpicture}
-	\begin{axis}[
-		defaults,
-		title={Time it takes to load things with `setTimeout`},
-		% axes
-		xlabel={Timeout},
-		xticklabels from table={\dataTimeout}{timeout},
-		x unit=\si{\ms},
-	]
-
-		% server
-		\addplot+[
-			smooth,
-			color=red,
-			mark=square
+\begin{figure}[h!]
+	\begin{tikzpicture}
+		\begin{axis}[
+			defaults,
+			title={Time it takes to load things with `setTimeout`},
+			% axes
+			xlabel={Timeout},
+			xticklabels from table={\dataTimeout}{timeout},
+			x unit=\si{\ms},
 		]
-			table[y = server] from \dataTimeout;
-		\addlegendentry{Server}
 
-		% ajax
-		\addplot+[
-			smooth,
-			color=blue,
-			mark=triangle
-		]
-			table[y = ajax] from \dataTimeout;
-		\addlegendentry{AJAX}
+			% server
+			\addplot+[
+				smooth,
+				color=red,
+				mark=square
+			]
+				table[y = server] from \dataTimeout;
+			\addlegendentry{Server}
 
-		% stream
-		\addplot+[
-			smooth,
-			color=violet,
-			mark=o
-		]
-			table[y = stream] from \dataTimeout;
-		\addlegendentry{Stream}
+			% ajax
+			\addplot+[
+				smooth,
+				color=blue,
+				mark=triangle
+			]
+				table[y = ajax] from \dataTimeout;
+			\addlegendentry{AJAX}
 
-	\end{axis}
-\end{tikzpicture}
+			% stream
+			\addplot+[
+				smooth,
+				color=violet,
+				mark=o
+			]
+				table[y = stream] from \dataTimeout;
+			\addlegendentry{Stream}
+
+		\end{axis}
+	\end{tikzpicture}
+
+	\caption{Timeout workflow data.}
+\end{figure}
