@@ -1,0 +1,13 @@
+---
+title: A WebSocket-based Approach to Sending Dynamic Data
+author: Ross Andrew Hadden
+date: \today
+tags: [what, whaaaaat]
+fontsize: 12pt
+geometry: margin=1in
+toc: true
+abstract: |
+	Most web applications serve dynamic data by either deferring an initial page response until the data has been retrieved, or by returning the initial response immediately and loading additional content through AJAX.
+	We investigate another option, which is to return the initial response immediately and send additional content through Web Sockets as the data becomes available.
+bibliography: references.bib
+---

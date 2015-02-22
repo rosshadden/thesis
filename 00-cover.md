@@ -2,16 +2,6 @@
 
 # Cover
 
-#### title
-
-A Socket-based Approach to Sending Dynamic Data
-
-
-#### author
-
-Ross Andrew Hadden
-
-
 #### prevdegrees
 
 B.S., University of Cincinnati (2014)
@@ -25,11 +15,6 @@ Department of Computer Science
 #### degree
 
 Master of Science in Computer Science, May 2015
-
-
-#### thesis date
-
-May xx, 2015
 
 
 #### supervisor
