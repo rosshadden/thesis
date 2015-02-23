@@ -1,6 +1,6 @@
 # Conclusion
 
-## \color{red}{TODO}
+## \textcolor{red}{TODO}
 
 \singlespacing
 

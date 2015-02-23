@@ -15,4 +15,5 @@ if g:localvimrc_sourced_once
 endif
 
 " do stuff you want to do only once for a running vim instance
-autocmd! BufWritePost [0-9]*.md call Make()
+" autocmd! BufWritePost [0-9]*.md call RossMake()
+autocmd! BufWritePost [0-9]*.md Make!
