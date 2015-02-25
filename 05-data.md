@@ -42,25 +42,44 @@ As the server receives the responses for the additional data, it sends it to the
 The tests carried out are enacted in such a way as to simulate common scenarios encountered in typical web applications.
 
 The independent variable in these tests is the time between an endpoint receiving an initial request for a page, and requests for external data.
-Essentially, the time until requests for data are made is the intentionally altered variable.
+Essentially, the time until requests for data are made is intentionally altered.
 The dependent variable is the time between an endpoint receiving an initial request for a page, and a client receiving all of the data it needs.
-In short, this is the time it takes for a client to be completely finished with its interactions with the server.
+This is the time it takes for a client to be completely finished with its interactions with the server.
+Each individual scenario may also contain several variants, in which a secondary variable is altered in an attempt to establish trends within the scenario.
 
 The way the dependent variable is measured is similar between each testing method.
-When an endpoint receives a request from a client, it immediately saves a reference to `Date.now()`, which "return[s] a `Number` value that is the time value designating the UTC date and time of the occurrence of the call to `now`," where the time value "is measured in `ECMAScript` in milliseconds since 01 January, 1970 UTC" [@ecma 15.9.4.4 (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.4.4)].
+When an endpoint receives a request from a client, it immediately saves a reference to `Date.now()`, which "return[s] a `Number` value that is the time value designating the UTC date and time of the occurrence of the call to `now`," where the time value "is measured in `ECMAScript` in milliseconds since 01 January, 1970 UTC" [@ecma, section 15.9.4.4].
 This `start` value is passed along with the markup for the pages served in each workflow.
 Once each testing method is complete, it calls a function `CS.diff`, which records a new value of `Date.now()`, and measures the difference between the two time values.
 The only part different between workflows is at what point the process is considered to be "complete".
 For the server workflow, `CS.diff()` is run as soon as the browser executes the JavaScript code on the served page.
 The AJAX workflow runs `CS.diff()` once it receives all of the responses it is expecting for the various testing scenarios.
 The stream workflow does the same thing as the AJAX one, though naturally it receives its data through a different transport.
+### Local file
 
-Each scenario may contain several variants, in which a secondary variable is altered in an attempt to establish trends within the scenario.
+\textcolor{red}{Blah}.
+
+
+### Remote file
+
+\textcolor{red}{Blah}.
+
+
+### Local database
+
+\textcolor{red}{Blah}.
+
+
+### Remote database
+
+\textcolor{red}{Blah}.
 
 
 ### Timeout
 
-\textcolor{red}{Blah}.
+In the timeout scenario, the server sends responses to the client after a (varying) timeout.
+When a client hits the endpoint, the server runs a `setTimeout`, after which the response is resolved.
+Unlike the other scenarios, this is a largely contrived workflow on its own, however it is meant to simulate the often asynchronous nature of web applications.
 
 \pgfplotstableread{data/timeout.dat} \dataTimeout
 
@@ -109,21 +128,3 @@ Each scenario may contain several variants, in which a secondary variable is alt
 \end{figure}
 
 
-### Local file
-
-\textcolor{red}{Blah}.
-
-
-### Remote file
-
-\textcolor{red}{Blah}.
-
-
-### Local database
-
-\textcolor{red}{Blah}.
-
-
-### Remote database
-
-\textcolor{red}{Blah}.
