@@ -55,24 +55,42 @@ The only part different between workflows is at what point the process is consid
 For the server workflow, `CS.diff()` is run as soon as the browser executes the JavaScript code on the served page.
 The AJAX workflow runs `CS.diff()` once it receives all of the responses it is expecting for the various testing scenarios.
 The stream workflow does the same thing as the AJAX one, though naturally it receives its data through a different transport.
+
+
 ### Local file
 
-\textcolor{red}{Blah}.
+In the local file scenario, a file is read from the local filesystem of the Cornerstone web server.
+The size of the file is altered in different tests, ranging from an empty file to a significantly large one.
+This is a very common situation in web applications, which often need to read local files.
 
 
 ### Remote file
 
-\textcolor{red}{Blah}.
+In this scenario, a file is retrieved from a remote filesystem over an `SSH` connection using the `scp` UNIX command.
+The size of the file is altered in different tests, as they are actually the same files as used in the local filesystem test.
+This is not a common situation for web applications, however it is a logical step from the previous test.
 
 
 ### Local database
 
-\textcolor{red}{Blah}.
+Perhaps the most common scenario being tested is retrieving data from a local database.
+For our testing we are using a `mongodb` instance, with spurious data stored within several collections.
 
 
 ### Remote database
 
-\textcolor{red}{Blah}.
+Another extremely common scenario is retrieving data from a remote database.
+For consistency the same fabricated data is used as in the local database test, and the remote database is also storing it within a `mongodb` instance.
+
+
+### Local endpoint
+
+In this scenario the web server makes a request to another endpoint that exists on the same Cornerstone application.
+
+
+### Remote endpoint
+
+In this scenario the web server makes a request to another endpoint that exists on remotely-hosted Cornerstone application.
 
 
 ### Timeout
@@ -87,7 +105,7 @@ Unlike the other scenarios, this is a largely contrived workflow on its own, how
 	\begin{tikzpicture}
 		\begin{axis}[
 			defaults,
-			title={Time it takes to load things with `setTimeout`},
+			title={Time taken to load things with `setTimeout`},
 			% axes
 			xlabel={Timeout},
 			xticklabels from table={\dataTimeout}{timeout},
@@ -126,5 +144,3 @@ Unlike the other scenarios, this is a largely contrived workflow on its own, how
 
 	\caption{Timeout workflow data.}
 \end{figure}
-
-
