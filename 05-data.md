@@ -63,6 +63,52 @@ In the local file scenario, a file is read from the local filesystem of the Corn
 The size of the file is altered in different tests, ranging from an empty file to a significantly large one.
 This is a very common situation in web applications, which often need to read local files.
 
+\pgfplotstableread{data/local-file.dat} \dataLocalFile
+
+\begin{figure}[h!]
+	\begin{tikzpicture}
+		\begin{axis}[
+			defaults,
+			title={Time taken to load data from a local file},
+			% axes
+			xlabel={Timeout},
+			xticklabels from table={\dataLocalFile}{size},
+			x unit=\si{\ms},
+		]
+
+			% server
+			\addplot+[
+				smooth,
+				color=red,
+				mark=square
+			]
+				table[y = server] from \dataLocalFile;
+			\addlegendentry{Server}
+
+			% ajax
+			\addplot+[
+				smooth,
+				color=blue,
+				mark=triangle
+			]
+				table[y = ajax] from \dataLocalFile;
+			\addlegendentry{AJAX}
+
+			% stream
+			\addplot+[
+				smooth,
+				color=violet,
+				mark=o
+			]
+				table[y = stream] from \dataLocalFile;
+			\addlegendentry{Stream}
+
+		\end{axis}
+	\end{tikzpicture}
+
+	\caption{Local file workflow data.}
+\end{figure}
+
 
 ### Remote file
 
@@ -70,27 +116,109 @@ In this scenario, a file is retrieved from a remote filesystem over an `SSH` con
 The size of the file is altered in different tests, as they are actually the same files as used in the local filesystem test.
 This is not a common situation for web applications, however it is a logical step from the previous test.
 
+\pgfplotstableread{data/remote-file.dat} \dataRemoteFile
+
+\begin{figure}[h!]
+	\begin{tikzpicture}
+		\begin{axis}[
+			defaults,
+			title={Time taken to load data from a remote file},
+			% axes
+			xlabel={Timeout},
+			xticklabels from table={\dataRemoteFile}{size},
+			x unit=\si{\ms},
+		]
+
+			% server
+			\addplot+[
+				smooth,
+				color=red,
+				mark=square
+			]
+				table[y = server] from \dataRemoteFile;
+			\addlegendentry{Server}
+
+			% ajax
+			\addplot+[
+				smooth,
+				color=blue,
+				mark=triangle
+			]
+				table[y = ajax] from \dataRemoteFile;
+			\addlegendentry{AJAX}
+
+			% stream
+			\addplot+[
+				smooth,
+				color=violet,
+				mark=o
+			]
+				table[y = stream] from \dataRemoteFile;
+			\addlegendentry{Stream}
+
+		\end{axis}
+	\end{tikzpicture}
+
+	\caption{Remote file workflow data.}
+\end{figure}
+
 
 ### Local database
 
 Perhaps the most common scenario being tested is retrieving data from a local database.
 For our testing we are using a `mongodb` instance, with spurious data stored within several collections.
 
+\pgfplotstableread{data/local-database.dat} \dataLocalDB
+
+\begin{figure}[h!]
+	\begin{tikzpicture}
+		\begin{axis}[
+			defaults,
+			title={Time taken to load data from a local database},
+			% axes
+			xlabel={Timeout},
+			xticklabels from table={\dataLocalDB}{documents},
+			x unit=\si{\ms},
+		]
+
+			% server
+			\addplot+[
+				smooth,
+				color=red,
+				mark=square
+			]
+				table[y = server] from \dataLocalDB;
+			\addlegendentry{Server}
+
+			% ajax
+			\addplot+[
+				smooth,
+				color=blue,
+				mark=triangle
+			]
+				table[y = ajax] from \dataLocalDB;
+			\addlegendentry{AJAX}
+
+			% stream
+			\addplot+[
+				smooth,
+				color=violet,
+				mark=o
+			]
+				table[y = stream] from \dataLocalDB;
+			\addlegendentry{Stream}
+
+		\end{axis}
+	\end{tikzpicture}
+
+	\caption{Local database workflow data.}
+\end{figure}
+
 
 ### Remote database
 
 Another extremely common scenario is retrieving data from a remote database.
 For consistency the same fabricated data is used as in the local database test, and the remote database is also storing it within a `mongodb` instance.
-
-
-### Local endpoint
-
-In this scenario the web server makes a request to another endpoint that exists on the same Cornerstone application.
-
-
-### Remote endpoint
-
-In this scenario the web server makes a request to another endpoint that exists on remotely-hosted Cornerstone application.
 
 
 ### Timeout
@@ -105,7 +233,7 @@ Unlike the other scenarios, this is a largely contrived workflow on its own, how
 	\begin{tikzpicture}
 		\begin{axis}[
 			defaults,
-			title={Time taken to load things with `setTimeout`},
+			title={Time taken to load data with `setTimeout`},
 			% axes
 			xlabel={Timeout},
 			xticklabels from table={\dataTimeout}{timeout},
