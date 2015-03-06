@@ -30,8 +30,6 @@ Dr. Paul Talaga, Professor
 
 #### titlepage
 
-> A Socket-based Approach to Sending Dynamic Data
-
 > A thesis submitted to the
 > Division of Graduate Studies and Research of the University of Cincinnati
 
@@ -41,15 +39,10 @@ Dr. Paul Talaga, Professor
 
 > in the Department of Computer Science of the College of Engineering and Applied Science
 
-> November 13, 2014
-> by
-> Ross Andrew Hadden
-
-> Thesis Adviser and Committee Chair:  Dr. Paul Talaga
-
 
 #### Acknowledgments
 
 This is the acknowledgments section.
 
 \doublespacing
+\newpage
