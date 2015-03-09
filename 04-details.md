@@ -1,30 +1,17 @@
 # Details
 
-## \textcolor{red}{TODO}
-
-\singlespacing
-
-> Since the request latency itself is not easily controlled, the only sensible option is to limit the number of requests.
-> The process outlined above requires $n + 1$ `HTTP` requests to a web server, where $n$ is the number of `AJAX` requests, and naturally $n + 1$ `HTTP` responses.
-> This means that there are $2n + 2$
-
---------------------------------
-
-\doublespacing
-
-
 There are a lot of pieces working together to make this work.
-The Cornerstone Node.js framework is itself built on top of another popular framework, `Express`, which gives it a very solid foundation in terms of a powerful web framework.
-This has served as a great origin for adding even more convenient features, especially when coupled with transpiling the code with `6to5`, providing access to many useful parts of ES6.
+The Cornerstone Node.js framework is itself built on top of another popular framework, Express, which gives it a very solid foundation in terms of a powerful web framework.
+This has served as a great origin for adding even more convenient features, especially when coupled with transpiling the code with 6to5, providing access to many useful parts of ES6.
 
-`Promises` are one such useful feature.
+Promises are one such useful feature.
 Promises are objects used for deferred and asynchronous computations [[__REF__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)].
 They make writing asynchronous code much more favorable and manageable than the callback-heavy alternative, and allow for passing around composable handlers for success and failure states of functions.
 
 
 ## Process
 
-Normally when data is passed from a controller to a `Handlebars` view template in Cornerstone, the values are substituted in-place when the template is rendered.
+Normally when data is passed from a controller to a Handlebars view template in Cornerstone, the values are substituted in-place when the template is rendered.
 For example:
 
 ```js
@@ -82,10 +69,10 @@ let someController = {
 ```
 
 In this situation, `bar` would not actually be rendered to the client.
-If `{{bar}}` were to be used in the template anyway, it would just be rendered as `[object Object]`, which is the result of JavaScript coercing a `promise` into a `string`.
-Instead what happens is that Cornerstone serves the page before the promise has been resolved (which in this case means before the 5000 millisecond timeout has finished).
+If `{{bar}}` were to be used in the template anyway, it would just be rendered as `[object Object]`, which is the result of JavaScript coercing a `Promise` into a `String`.
+Instead what happens is that Cornerstone serves the page before the promise has been resolved (which in this case means before the \SI{5000}{\ms} timeout has finished).
 
-Once the client loads the page, it initiates a WebSocket connection to the server, using `socket.io` [[__REF__]](http://socket.io/).
+Once the client loads the page, it initiates a WebSocket connection to the server, using socket.io [[__REF__]](http://socket.io/).
 There is an authorization handshake stage at the beginning of the socket connection in which Cornerstone establishes a bidirectional mapping between sessions and WebSocket connections, so that the socket connection of any given client may be accessed within any route handler.
 This bidirectional mapping is how Cornerstone knows which socket to send data to for each request.
 It also provides a way to access a client's session data from the scope of a socket connection, though that functionality does not come to play within this workflow.
@@ -117,8 +104,3 @@ The purpose of the `<var>` tags is to serve as a placeholder for the deferred da
 When a client receives a socket broadcast with the data for `bar`, it replaces this placeholder with the received data.
 The way that the placeholder replacement works is by using the key sent in the WebSocket broadcast to select the `<var>` tag with the matching `data-promise` attribute.
 This HTML-output method does not work well for all situations, of course, but when HTML or raw data needs to be displayed it is rather convenient.
-
-
-## Explanation
-
-> Establishing the WebSocket connection is an event that happens once per page
