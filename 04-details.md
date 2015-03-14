@@ -14,24 +14,20 @@ They make writing asynchronous code much more favorable and manageable than the 
 Normally when data is passed from a controller to a Handlebars view template in Cornerstone, the values are substituted in-place when the template is rendered.
 For example:
 
-```js
+```javascript
 // someController.js
-
 let someController = {
-	// ...
 	someRoute(req, res) {
 		res.view({
 			foo: "hello",
 			bar: "world"
 		});
 	}
-	// ...
 };
 ```
 
-```handlebars
+```html
 {{! someController/someRoute.hbs }}
-
 <p>{{foo}}</p>
 <p>{{bar}}</p>
 ```
@@ -46,9 +42,8 @@ This results in the following being rendered to the client:
 When one or more of the data values passed to a view template is a promise, however, it initiates the streaming feature.
 Consider the following example:
 
-```js
+```javascript
 // someController.js
-
 let delayedData = new Promise(function(resolve, reject) {
 	// resolves the promise after 5000 ms
 	setTimeout(function() {
@@ -57,14 +52,12 @@ let delayedData = new Promise(function(resolve, reject) {
 });
 
 let someController = {
-	// ...
 	someRoute(req, res) {
 		res.view({
 			foo: "hello",
 			bar: delayedData
 		});
 	}
-	// ...
 };
 ```
 
@@ -90,7 +83,7 @@ It just returns a `<var>` HTML tag with a `data-promise` attribute set to the ke
 
 For example, given the situation outlined above where `bar` is a promise being passed to a view, consider a view file with the following markup:
 
-```handlebars
+```html
 <p>{{{stream "bar"}}}</p>
 ```
 

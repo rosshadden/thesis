@@ -39,7 +39,7 @@ Of course, the server _could_ just do all of the rendering itself, which would l
 However this is potentially even worse than making too many requests, because the user would see only a blank white page until the server returns a response.
 
 
-> Cornerstone
+## Cornerstone
 
 Together with colleague Sean Clark, I made a back-end web framework called Cornerstone.
 Built on Node.js---the server-side JavaScript platform---Cornerstone makes writing APIs and web servers much more convenient.
