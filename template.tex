@@ -146,6 +146,30 @@ $endfor$
 \begin{document}
 $if(title)$
 \maketitle
+
+\begin{center}
+A thesis submitted to the \\
+
+Division of Graduate Studies and Research \\
+of the University of Cincinnati \\
+
+in partial fulfillment of the \\
+requirements for the degree of \\
+
+MASTER OF SCIENCE \\
+
+in the Department of Computer Science \\
+of the College of Engineering and Applied Science \\
+
+$date$ \\
+by \\
+$author$ \\
+B.S., University of Cincinnati, Cincinnati, Ohio (2014) \\
+
+Thesis Adviser and Committee Chair: Dr. Paul Talaga \\
+
+Committee members:  Dr. Fred Annexstein, Professor, and Dr. John Franco, Professor
+\end{center}
 $endif$
 $if(abstract)$
 \newpage
@@ -172,6 +196,9 @@ $endif$
 $if(lof)$
 \listoffigures
 $endif$
+
+\newpage
+
 $body$
 
 $if(natbib)$
