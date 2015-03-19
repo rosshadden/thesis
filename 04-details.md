@@ -5,7 +5,7 @@ The Cornerstone Node.js framework is itself built on top of another popular fram
 This has served as a great origin for adding even more convenient features, especially when coupled with transpiling the code with 6to5, providing access to many useful parts of ES6.
 
 Promises are one such useful feature.
-Promises are objects used for deferred and asynchronous computations [[__REF__](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)].
+Promises are objects used for deferred and asynchronous computations [@mdn, *Global_Objects/Promise*].
 They make writing asynchronous code much more favorable and manageable than the callback-heavy alternative, and allow for passing around composable handlers for success and failure states of functions.
 
 
@@ -65,7 +65,7 @@ In this situation, `bar` would not actually be rendered to the client.
 If `{{bar}}` were to be used in the template anyway, it would just be rendered as `[object Object]`, which is the result of JavaScript coercing a `Promise` into a `String`.
 Instead what happens is that Cornerstone serves the page before the promise has been resolved (which in this case means before the \SI{5000}{\ms} timeout has finished).
 
-Once the client loads the page, it initiates a WebSocket connection to the server, using socket.io [[__REF__]](http://socket.io/).
+Once the client loads the page, it initiates a WebSocket connection to the server, using socket.io.
 There is an authorization handshake stage at the beginning of the socket connection in which Cornerstone establishes a bidirectional mapping between sessions and WebSocket connections, so that the socket connection of any given client may be accessed within any route handler.
 This bidirectional mapping is how Cornerstone knows which socket to send data to for each request.
 It also provides a way to access a client's session data from the scope of a socket connection, though that functionality does not come to play within this workflow.

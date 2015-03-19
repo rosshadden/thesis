@@ -59,9 +59,9 @@ There is almost no overhead to the server and stream workflows.
 In fact, due to the relatively tremendous load time of the AJAX method skewing the range set of the data, the overhead is not even noticeable in \autoref{fig:dataParallel}.
 
 What is not clear based purely on the data is why the AJAX method performs so poorly.
-This is actually because web browsers have a maximum concurrent connection limit [__REF__].
-The tests were all performed in Chromium 42.0.2311.22, which has a limit of \num{6} concurrent connections [__REF__].
+This is actually because web browsers have a maximum concurrent connection limit per given hostname [@browserscope, *network*].
+The tests were all performed in Chromium 42.0.2311.22, which has a limit of \num{6} concurrent connections.
 When the browser is asked to make a large number of asynchronous requests it opens as many connections as it can, opening more as previous requests are resolved.
 Since the parallel scenario employs a timeout duration of \SI{2}{\second}, each batch of connections lingers for that long before being resolved.
-Thus depending on the web browser used, requests are made at a velocity of around 2--8 requests per second [__REF__].
+Thus depending on the web browser used, requests are made at a velocity of around 2--8 requests per second.
 The server and stream workflows are really only limited by the maximum heap size and memory availability in their runtime environments, which means their velocities are virtually infinite.

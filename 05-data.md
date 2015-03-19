@@ -58,7 +58,7 @@ Once each testing method is complete, it calls a function `CS.diff`, which recor
 
 The only difference between workflows is the determination of the point at which the process is considered to be complete.
 For the server workflow, `CS.diff()` is run as soon as the browser executes the JavaScript code on the served page.
-By this point all content is guaranteed to be rendered [__REF__].
+Since the `<script>` tags occur immediately before the closing `</body>` tag, the code is loaded and run in an optimal manner [@code-standards, *Optimize Delivery of CSS and JavaScript*].
 The AJAX workflow runs `CS.diff()` once it receives all of the responses it is expecting for any given testing scenario.
 The stream workflow does the same as the AJAX one, though naturally it receives its data through a different transport.
 
