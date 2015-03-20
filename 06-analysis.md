@@ -22,15 +22,15 @@ Most notably, users are presented with a functionless blank page until the respo
 The [file](#local-file) and [database](#local-database) tests (see \autoref{fig:dataLocalFile} and \autoref{fig:dataLocalDB}, respectively) yield comparatively poor results for the stream method.
 Interestingly enough, the [timeout](#timeout) test (see \autoref{fig:dataTimeout}) is consistently better for the [stream workflow](#stream) than for the server and AJAX workflows, however slightly.
 
-Based on these three tests alone, the success and failure of the stream method seems to be due to two distinct factors:   transmitted data size and request duration.
+Based solely on these three tests, the success and failure of the stream method seems to be due to two distinct factors:   transmitted data size and request duration.
 In the timeout test for example, the data that is being transmitted to the client is minimal.
-In fact the transmitted data is merely a simple number (the number of milliseconds the timeout was made for).
+In fact the transmitted data is merely a small integer (the number of milliseconds the timeout was made for).
 The file and database tests are sending increasingly more loads of data to the client, as they are sending the contents of files and collections of varied lengths.
 It seems logical to conclude based on these tests that the stream method performs better when less data is transmitted.
 
 The timeout test does better for the stream workflow in all cases except the first, which is when there is a timeout of \SI{0}{\ms}.
 I believe this is because at \SI{0}{\second}, there is not enough time for the stream method to benefit from bypassing the gap between loading the page and making the request.
-That is, by the time the client loads the page and establishes a WebSocket connection to the server, it is essentially equivalent to the AJAX method for a timeout of \SI{0}{\second}, in that in makes a request which is immediately resolved.
+That is, by the time the client loads the page and establishes a WebSocket connection to the server, it is essentially equivalent to the AJAX method for a timeout of \SI{0}{\ms} in that in makes a request which is immediately resolved.
 This is because although the timeout finishes immediately after the original endpoint was hit, it still requires the additional request of establishing the socket connection in order to receive the data.
 In the trials with the higher timeouts, however, there is a period of time where the stream method benefits from making the timeout call as soon as the endpoint is hit.
 The data supports this theory because in every case of the timeout test (except the \SI{0}{\ms} case), the stream method is actually around \SI{600}{\ms} faster than the other two methods.
@@ -49,7 +49,7 @@ The reason the stream method performs so much better than AJAX when operating wi
 In contrast, each one of the requests in the AJAX method makes a separate call to the server, creating a new connection.
 In the latter variant, there are 1024 separate AJAX requests made to the server, while there is only ever one WebSocket connection.
 
-The series testing scenario is a logical extension of the theory that this entire paper was created for, which is that the gap between requests may be mitigated or even mitigated by making intelligent uses of WebSockets.
+The series testing scenario is a logical extension of the theory that this entire paper was created for, which is that the gap between requests may be mitigated or even entirely circumvented by making intelligent uses of WebSockets.
 It takes this concept to an extreme, in which there are many such gaps omitted.
 There is overhead in making requests, such as the SYN and ACK handshake between client and server, as well as the HTTP headers that need to be sent with each payload.
 In bypassing the latency gaps, this overhead is eliminated as well.
@@ -58,10 +58,13 @@ The parallel testing scenario is even more intriguing.
 There is almost no overhead to the server and stream workflows.
 In fact, due to the relatively tremendous load time of the AJAX method skewing the range set of the data, the overhead is not even noticeable in \autoref{fig:dataParallel}.
 
-What is not clear based purely on the data is why the AJAX method performs so poorly.
+What is not clear based purely on the data is the reason why the AJAX method performs so poorly.
 This is actually because web browsers have a maximum concurrent connection limit per given hostname [@browserscope, *network*].
 The tests were all performed in Chromium 42.0.2311.22, which has a limit of \num{6} concurrent connections.
 When the browser is asked to make a large number of asynchronous requests it opens as many connections as it can, opening more as previous requests are resolved.
 Since the parallel scenario employs a timeout duration of \SI{2}{\second}, each batch of connections lingers for that long before being resolved.
 Thus depending on the web browser used, requests are made at a velocity of around 2--8 requests per second.
 The server and stream workflows are really only limited by the maximum heap size and memory availability in their runtime environments, which means their velocities are virtually infinite.
+
+These findings for the parallel test were quite unexpected, as the concurrent connection limit was not considered when the implementation was conceived.
+The underlying concept is the same as it is in the series test, however, which is that the stream method does better when there are more request-response cycles for it to bypass.
