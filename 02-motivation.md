@@ -1,20 +1,5 @@
 # Motivation
 
-## \textcolor{red}{TODO}
-
-\singlespacing
-
-- get practical everyday use out of WebSockets
-- references
-	- browser loading order
-	- best practices
-		- scripts at `</body>`
-
---------------------------------
-
-\doublespacing
-
-
 AJAX calls are made from JavaScript code, which initiate an asynchronous call to a specified endpoint.
 Once the data is received, a callback gets executed which has access to the data (or error) returned by the server, as well as some request and response metadata.
 While this process is very well accepted and works quite well, there are actually some places where it falls short.

@@ -8,10 +8,17 @@ lot: true
 lof: true
 abstract: |
 	Most web applications serve dynamic data by either deferring an initial page response until the data has been retrieved, or by returning the initial response immediately and loading additional content through AJAX.
-	We investigate another option, which is to return the initial response immediately and send additional content through WebSockets as the data becomes available.
+	We investigate another option, which is to return the initial response immediately and send additional content through a WebSocket connection as the data becomes available.
+        We intend to illustrate the performance of this proposition, as compared to popular conventions of both a server-only and an AJAX approach for achieving the same outcome.
+        This dissertation both explains and demonstrates the implementation of the proposed model, and discusses an analysis of the findings.
+        We use a Node.js web application built with the Cornerstone web framework to serve both the content being tested and the endpoints used for data requests.
+        An analysis of the results shows that the in situations when minimal data is retrieved after a timeout, the WebSocket method is marginally faster than the server and AJAX methods, and when retrieving populated files or database records it is marginally slower.
+        The WebSocket method considerably outperforms the AJAX method when making multiple requests in series, and when making requests in parallel the WebSocket and server approaches both outperform AJAX by a tremendous amount.
 bibliography: references.bib
 nocite: |
     @socket.io
 fontsize: 12pt
+fontfamily: bookman
 geometry: margin=1in
+linkcolor: black
 ---
