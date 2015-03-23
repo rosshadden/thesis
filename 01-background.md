@@ -1,13 +1,13 @@
 # Background
 
 The Internet has a long and storied history, but over the past few decades the HyperText Transfer Protocol (`HTTP`) has remained one of the most popular transports for data communication.
-`HTTP` (as well as the SSL-encrypted variant `HTTPS`, for that matter) is the protocol that most web servers and browsers use to send data back and forth to each other.
+`HTTP` (as well as the SSL-encrypted variant `HTTPS`) is the protocol that most web servers and browsers use to send data back and forth to each other.
 When a browser makes an `HTTP` request to a web server, the web server then sends a response to the request.
 
 
 ## Server
 
-Originally when clients made `HTTP` `GET` requests to load web pages, web servers rendered the pages with all desired data present, and a new page would be requested with new content when data needed to be changed or updated.
+Originally when clients made `HTTP` `GET` requests to load web pages, web servers render the pages with all desired data present, and a new page would be requested with new content when data needed to be changed or updated.
 This works quite nicely when a website is just a collection of static pages.
 The pages may contain hyperlinks which, when clicked, take users to another page.
 The user's browser client makes another request to the same server, which carries out the same process and responds with the new page content.
