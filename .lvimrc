@@ -7,7 +7,7 @@ endif
 
 " do stuff you want to do only once for an edited file
 
-let &l:makeprg = 'pandoc -f markdown -o /tmp/thesis.pdf -N -H thesis.sty --template=template.tex --filter pandoc-citeproc [0-9]*.md metadata.yaml'
+let &l:makeprg = 'pandoc -f markdown -o dist/thesis.pdf -N -H thesis.sty --template=template.tex --filter pandoc-citeproc [0-9]*.md metadata.yaml'
 
 " guard to end loading if it has been loaded for the running vim instance
 if g:localvimrc_sourced_once
