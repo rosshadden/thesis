@@ -18,6 +18,5 @@ bibliography: references.bib
 nocite: |
 	@cornerstone, @socket.io
 fontsize: 12pt
-fontfamily: bookman
 geometry: margin=1in
 ---
