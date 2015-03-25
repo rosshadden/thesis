@@ -1,6 +1,6 @@
 # Overview
 
-As discussed previously, the primary motivation for this study was to reduce a rather large latency gap between serving an initial web page and providing it data.
+As discussed previously, the primary motivation for this study was to reduce a rather large latency gap between serving an initial web page and providing the page with data.
 This was achieved by employing the use of WebSockets in a creative way.
 
 When the web server receives a request for a route from a client, it immediately sends a response back to the client with as much content as it can without fetching external data.

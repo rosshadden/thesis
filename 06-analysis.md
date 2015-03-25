@@ -11,9 +11,9 @@ Establishing the WebSocket connection is an event that happens only once per pag
 After that point, the connection remains open and may be used indefinitely.
 The stream workflow therefore only requires $2$ requests to a web server.
 One request is made for the initial page endpoint, and one is made to establish a WebSocket connection.
-As there are still the $n + 1$ responses present in the AJAX workflow as well as one for the WebSocket connection, there are a total of $n + 2$ responses, and thus $n + 4$ total data transmissions.
+As there are still the $n + 1$ responses present in the AJAX workflow as well as one response for the WebSocket connection, there are a total of $n + 2$ responses, and thus $n + 4$ total data transmissions.
 
-The [server](#server) process effectively limits those numbers down to $1$ request and $1$ response, however there are inherent problems with pursuing such an extreme as well.
+The [server](#server) process effectively limits those numbers down to one request and one response, however there are inherent problems with pursuing such a low extreme as well.
 Most notably, users are presented with a functionless blank page until the response is received.
 
 
@@ -22,10 +22,10 @@ Most notably, users are presented with a functionless blank page until the respo
 The [file](#local-file) and [database](#local-database) tests (see \autoref{fig:dataLocalFile} and \autoref{fig:dataLocalDB}, respectively) yield comparatively poor results for the stream method.
 Interestingly enough, the [timeout](#timeout) test (see \autoref{fig:dataTimeout}) is consistently better for the [stream workflow](#stream) than for the server and AJAX workflows, however slightly.
 
-Based solely on these three tests, the success and failure of the stream method seems to be due to two distinct factors:   transmitted data size and request duration.
+Based solely on these three tests, the success and failure of the stream method seems to be dependent on two distinct factors:  transmitted data size and request duration.
 In the timeout test for example, the data that is being transmitted to the client is minimal.
 In fact the transmitted data is merely a small integer (the number of milliseconds the timeout was made for).
-The file and database tests are sending increasingly more loads of data to the client, as they are sending the contents of files and collections of varied lengths.
+The file and database tests are sending increasing loads of data to the client, as they are sending the contents of files and collections of varied lengths.
 It seems logical to conclude based on these tests that the stream method performs better when less data is transmitted.
 
 The timeout test does better for the stream workflow in all cases except the first, which is when there is a timeout of \SI{0}{\ms}.
@@ -43,7 +43,7 @@ The timeout test is the only test found to exhibit this behavior, and only for t
 
 The [series](#series) and [parallel](#parallel) tests show much more promising results for the stream method.
 In the series scenario, the results of the AJAX and stream workflows very quickly diverge.
-Whereas the AJAX method yields values on a linearly-increasing scale, the stream method instead appears to adhere to more of a logarithmic scale.
+Whereas the AJAX method yields values on a linearly increasing scale, the stream method instead appears to adhere to more of a logarithmic scale.
 Here the benefits of WebSockets really start to become evident, as depicted in \autoref{fig:dataSeries}.
 The reason the stream method performs so much better than AJAX when operating with serial requests is that there is only one single WebSocket connection, which remains open throughout the entire endeavor.
 In contrast, each one of the requests in the AJAX method makes a separate call to the server, creating a new connection.
@@ -67,4 +67,4 @@ Thus depending on the web browser used, requests are made at a velocity of aroun
 The server and stream workflows are really only limited by the maximum heap size and memory availability in their runtime environments, which means their velocities are virtually infinite.
 
 These findings for the parallel test were quite unexpected, as the concurrent connection limit was not considered when the implementation was conceived.
-The underlying concept is the same as it is in the series test, however, which is that the stream method does better when there are more request-response cycles for it to bypass.
+The underlying concept is the same as in the series test, however, which is that the stream method does better when there are more request-response cycles for it to bypass.

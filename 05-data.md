@@ -1,8 +1,8 @@
 # Data
 
-At its core, the testing performed is done so in an attempt to find the fastest or best available method for serving dynamic web pages to users.
+At its core, the testing performed is done in an attempt to find the fastest or best available method for serving dynamic web pages to users.
 In most of the test scenarios, these pages contain data populated from external requests, where the client makes a request to the server for data.
-The data can be anything from a simple boolean or numeric value to the contents of an immense number of documents from a database.
+The data can be anything from a simple boolean or numeric value, to the contents of an immense number of documents from a database.
 The need to deliver data to a client is a common one, and these tests were carried out with that in mind.
 
 
@@ -24,7 +24,7 @@ Thus the server workflow is meant to be more of a control case, against which th
 
 ### AJAX
 
-The AJAX workflow is perhaps currently the most common standard for websites serving content any more elaborate than simple static markup.
+The AJAX workflow is arguably the most common standard for websites serving content any more elaborate than simple static markup.
 When an endpoint receives a request from a client that requires additional data, it serves back minimal markup without the data present.
 The client then makes AJAX calls to request the ancillary data.
 As the client receives the responses for this additional data, it does what it needs to do with it (which is in this case render it to the page and perform the necessary testing calculations).
@@ -46,7 +46,7 @@ The `Promise` becomes resolved once the request in question is done, with the da
 This `Promise` API is used for every test, even where it is unnecessary, for scalability and consistency.
 
 The independent variable in these tests is the time between an endpoint receiving an initial request for a page, and the initiation of requests for external data.
-This intentionally-altered time is essentially the time that lapses until requests can made for data.
+This intentionally-altered time is essentially the time that lapses until requests can be made for data.
 The dependent variable is the time between an endpoint receiving an initial request for a page and a client receiving all of the data it needs.
 This is the time it takes for a client to be completely finished with its interactions with the server.
 Each individual scenario may also contain several variants, in which a secondary variable is altered in an attempt to establish trends within the scenario.
@@ -66,16 +66,16 @@ The stream workflow does the same as the AJAX one, though naturally it receives 
 ### Local file
 
 In the local file scenario, a file is read from the local filesystem of the Cornerstone web server.
-The size of the file is altered between tests, ranging from an empty file to a significantly large one.
+The size of the file is altered between tests, ranging from an empty file to a large one.
 This is a very common situation in web applications, which often need to read local files.
 
 The files are made during an initialization process using the GNU `truncate` command and stored in `/tmp`, which is a `tmpfs` filesystem residing in memory on the server.
 When requested, these files are read from the filesystem using the asynchronous Node.js command `fs.readFile`.
 After a file is finished being read into the working memory of the web application server, it resolves the request `Promise` with the contents of the file.
 
-Since the `truncate` command merely allocates the size for a file and does not fill it with contents, all of the created are "empty".
+Since the `truncate` command merely allocates the size for a file and does not fill it with contents, all of the created files are "empty".
 To get around this, we actually send the raw `Buffer` data to the client, as opposed to the `UTF-8` encoded contents.
-For example, an "empty" file of size \SI{4}{\byte} would be sent to the client as:
+For example, an "empty" file of size \SI{4}{\byte} is sent to the client as:
 
 ```json
 {
@@ -266,7 +266,7 @@ The series test scenario involves having multiple requests that need to occur se
 That is, a request can not begin until the request that precedes it has been successfully resolved.
 The requests received are simply resolved after a timeout exactly like those in the [timeout](#timeout) test.
 Instead of varying the timeout length, however, the value of the timeout is always \SI{0}{\ms}.
-Here rather it is the number of serial requests performed that changes between trials.
+Rather, it is the number of serial requests performed that is changed across different trials.
 
 See \autoref{fig:dataSeries} for the data captured for this test case.
 
