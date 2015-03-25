@@ -133,93 +133,115 @@ $if(verbatim-in-note)$
 $endif$
 
 $if(title)$
-\title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
+  \title{$title$$if(subtitle)$\\\vspace{0.5em}{\large $subtitle$}$endif$}
 $endif$
-$if(author)$
-\author{$for(author)$$author$$sep$ \and $endfor$}
-$endif$
-\date{$date$}
+
 $for(header-includes)$
-$header-includes$
+  $header-includes$
 $endfor$
 
 \begin{document}
-$if(title)$
-\maketitle
+  $if(title)$
+    \maketitle
 
-\begin{center}
-A thesis submitted to the \\
+    \pagenumbering{roman}
+    \setcounter{page}{1}
+    \thispagestyle{empty}
 
-Division of Graduate Studies and Research \\
-of the University of Cincinnati \\
+    \singlespacing
 
-in partial fulfillment of the \\
-requirements for the degree of \\
+    \begin{center}
+      A thesis submitted to the \\
 
-MASTER OF SCIENCE \\
+      \hfill
 
-in the Department of Computer Science \\
-of the College of Engineering and Applied Science \\
+      Division of Graduate Studies and Research \\
+      of the University of Cincinnati \\
 
-$date$ \\
-by \\
-$author$ \\
-B.S., University of Cincinnati, Cincinnati, Ohio (2014) \\
+      \hfill
 
-Thesis Adviser and Committee Chair: Dr. Paul Talaga \\
+      in partial fulfillment of the \\
+      requirements for the degree of \\
 
-Committee members:  Dr. Fred Annexstein, Professor, and Dr. John Franco, Professor
-\end{center}
-$endif$
-$if(abstract)$
-\newpage
-\begin{abstract}
-$abstract$
-\end{abstract}
-\newpage
-$endif$
+      \hfill
 
-$for(include-before)$
-$include-before$
+      MASTER OF SCIENCE \\
 
-$endfor$
-$if(toc)$
-{
-\hypersetup{linkcolor=$linkcolor$}
-\setcounter{tocdepth}{$toc-depth$}
-\tableofcontents
-}
-$endif$
-$if(lot)$
-\listoftables
-$endif$
-$if(lof)$
-\listoffigures
-$endif$
+      \hfill
 
-\newpage
+      in the Department of Computer Science \\
+      of the College of Engineering and Applied Science \\
+      by \\
 
-$body$
+      \hfill
 
-$if(natbib)$
-$if(biblio-files)$
-$if(biblio-title)$
-$if(book-class)$
-\renewcommand\bibname{$biblio-title$}
-$else$
-\renewcommand\refname{$biblio-title$}
-$endif$
-$endif$
-\bibliography{$biblio-files$}
+      $author$ \\
 
-$endif$
-$endif$
-$if(biblatex)$
-\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+      B.S., University of Cincinnati, Cincinnati, Ohio (2014) \\
 
-$endif$
-$for(include-after)$
-$include-after$
+      \hfill
 
-$endfor$
+      Thesis Adviser and Committee Chair: Dr. Paul Talaga \\
+
+      Committee members:  Dr. Fred Annexstein, Professor, and Dr. John Franco, Professor
+    \end{center}
+
+    \doublespacing
+  $endif$
+
+  $if(abstract)$
+    \newpage
+    \begin{abstract}
+      $abstract$
+    \end{abstract}
+    \newpage\mbox{}\newpage
+  $endif$
+
+  $for(include-before)$
+    $include-before$
+  $endfor$
+
+  $if(toc)$
+    {
+    \hypersetup{linkcolor=$linkcolor$}
+    \setcounter{tocdepth}{$toc-depth$}
+    \tableofcontents
+    }
+  $endif$
+
+  $if(lot)$
+    \listoftables
+  $endif$
+
+  $if(lof)$
+    \listoffigures
+  $endif$
+
+  \newpage
+
+  \pagenumbering{arabic}
+  \setcounter{page}{1}
+  $body$
+
+  $if(natbib)$
+    $if(biblio-files)$
+      $if(biblio-title)$
+        $if(book-class)$
+          \renewcommand\bibname{$biblio-title$}
+        $else$
+          \renewcommand\refname{$biblio-title$}
+        $endif$
+      $endif$
+
+      \bibliography{$biblio-files$}
+    $endif$
+  $endif$
+
+  $if(biblatex)$
+    \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+  $endif$
+
+  $for(include-after)$
+    $include-after$
+  $endfor$
 \end{document}
