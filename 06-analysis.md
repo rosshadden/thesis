@@ -34,7 +34,7 @@ That is, by the time the client loads the page and establishes a WebSocket conne
 This is because although the timeout finishes immediately after the original endpoint was hit, it still requires the additional request of establishing the socket connection in order to receive the data.
 In the trials with the higher timeouts, however, there is a period of time where the stream method benefits from making the timeout call as soon as the endpoint is hit.
 The data supports this theory because in every case of the timeout test (except the \SI{0}{\ms} case), the stream method is actually around \SI{600}{\ms} faster than the other two methods.
-This time of \SI{600}{\ms} happens to be around the time it takes to load a basic page from the web server.
+This time of \SI{600}{\ms} happens to be around the time it takes to load a basic page from the web server (see \autoref{table:base}).
 
 It is worth noting that in the timeout test every trial for the stream workflow is extraordinarily close between repeated trials.
 Repeated trials in every other scenario were found to vary by around \num{100}--\num{200} \si{\ms} between tests without any variables changing, and the values seen in the [data](#data) section are averages of these numbers.
