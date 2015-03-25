@@ -1,4 +1,4 @@
-# Conclusion and Future Work
+# Conclusions
 
 ## Conclusion
 
@@ -10,6 +10,30 @@ When making multiple requests in serial, WebSockets are also a more optimal data
 The WebSocket approach does not have to wait for a web page to fully render before making ancillary data requests.
 This benefit is realized more when making requests that return small amounts of data, such as in the [timeout](#timeout) test.
 Conversely, when sending large amounts of data such as in the [file](#local-file) and [database](#local-database) tests, AJAX outperforms the WebSocket approach.
+
+
+## Related Work
+
+There are several notable projects similar in nature to this thesis.
+One such project is MeteorJS, which resides at the application layer.
+It utilizes WebSockets to send data bidirectionally between server and client.
+MeteorJS implements a REST-like API on top of WebSockets, and uses this as a data transport in much the same way as AJAX [@meteor, *ddp*].
+In fact, MeteorJS has a lot of overlap with Cornerstone, in that they are both web application frameworks built on Node.js and utilize WebSockets.
+One of the main differences is that as a full-stack framework, MeteorJS has a large presence on both the server and the client, bridging the gap between the two in such a way that Cornerstone does not set out to achieve.
+Thus MeteorJS is in a good position to take full advantage of the benefits of WebSockets as a data transport.
+
+HTTP pipelining is another project aimed at increasing the speed of data transmissions for web sites.
+This is an HTTP/1.1 feature in which multiple HTTP requests may be sent on a single TCP connection without waiting for the corresponding responses [@pipelining, section 6.3.2].
+It must be supported by both the web server and the clients connecting to the web server in order to work.
+Unfortunately, despite the dramatic improvements in data transmission rates when using this technique, it is actually not widely supported by clients.
+Although Node.js, Nginx, and other web servers support HTTP pipelining, Opera is the only major browser to have this feature enabled by default [@pipelining-support].
+The rest of the major browsers either require users to explicitly enable it or do not support the feature at all.
+
+Google SPDY is a project that began as an improvement over HTTP pipelining, which achieves reduced latency through compression, multiplexing, and prioritization of data [@spdy].
+Unlike HTTP pipelining, support of SPDY is very high across major browsers.
+SPDY was officially discontinued in February 2015 in favor of HTTP/2, which is based on SPDY itself and will achieve the same performance and latency improvements [@http2].
+HTTP/2 will significantly increase the speed of network requests, albeit in a different way than the project detailed by this thesis.
+At the time of this writing it is unclear whether WebSockets will still be a viable data transport compared to HTTP/2; the speed of WebSockets may even increase from the changes introduced in HTTP/2.
 
 
 ## Future Work
