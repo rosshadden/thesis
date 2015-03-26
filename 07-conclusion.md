@@ -1,4 +1,4 @@
-# Conclusions
+# Conclusion and other work
 
 ## Conclusion
 
@@ -10,6 +10,15 @@ When making multiple requests in serial, WebSockets are also a more optimal data
 The WebSocket approach does not have to wait for a web page to fully render before making ancillary data requests.
 This benefit is realized more when making requests that return small amounts of data, such as in the [timeout](#timeout) test.
 Conversely, when sending large amounts of data such as in the [file](#local-file) and [database](#local-database) tests, AJAX outperforms the WebSocket approach.
+
+If one of the data transport methods was found to be better in every case, the conclusion drawn might be an advocation of its use over the other transport.
+Based on the assorted results, however, this is not the case.
+With the knowledge that each method has situations in which they are more effective, the next logical step is to take advantage of both approaches.
+Web application servers can decide which transport to use based on the size of the response for example.
+If under a certain threshold or if there are multiple requests, the server could send the response via WebSockets.
+Otherwise, instead of transmitting the data itself when a client comes online, the server could simply send a message instructing the client that it should hit a specified endpoint with AJAX to receive the necessary data.
+The data requests would begin at the same time in this scenario, which would give AJAX the same benefits as observed by the demonstrated WebSocket workflow.
+Data would then be sent in the manner that is deemed most efficient based on decided factors.
 
 
 ## Related Work

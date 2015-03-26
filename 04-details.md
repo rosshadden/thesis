@@ -1,4 +1,4 @@
-# Details
+# Implementation
 
 There are a lot of pieces working together to make the above procedure work.
 The Cornerstone Node.js framework is itself built on top of another popular framework, Express, which gives it a very solid foundation in terms of a powerful web framework.
@@ -71,15 +71,15 @@ This bidirectional mapping is how Cornerstone knows which socket to send data to
 It also provides a way to access a client's session data from the scope of a socket connection, though that functionality does not come into play within this workflow.
 For each promise, the web server binds a one-off listener for WebSocket connections, which tests for whether the connected client is the same client that is waiting for data.
 When this test passes, the server attaches a success handler for each promise that emits the resolved value of the promise to the client through the socket connection.
-The server then destroys the listener, which has at this point served its intended purpose and is no longer necessary.
+The server then destroys the listener, which has by this point served its intended purpose and is no longer necessary.
 
-Once the data gets to the client, a developer has several options on how to use the data.
+Once the data gets to the client, developers have several options on how to use the data.
 Since the data is just being sent through a WebSocket connection, the communication events may be bound to by the client in JavaScript, which provides access to the raw data being sent by the Cornerstone server.
 This is the most powerful option, as the client can do whatever it wants with the data.
 
 Another method of using the data sent via the WebSocket transport is to use Cornerstone's `{{{stream}}}` Handlebars helper.
-This helper is very simple in implementation.
-It just returns a `<var>` HTML tag with a `data-promise` attribute set to the key of the promise.
+This helper is very straightforward in implementation.
+It simply returns a `<var>` HTML tag with a `data-promise` attribute set to the key of the promise.
 
 For example, given the situation outlined above where `bar` is a promise being passed to a view, consider a view file with the following markup:
 
@@ -96,4 +96,4 @@ The above view markup would be rendered and served to the client as the followin
 The purpose of the `<var>` tags is to serve as a placeholder for the deferred data to be rendered in.
 When a client receives a socket broadcast with the data for `bar`, it replaces this placeholder with the received data.
 The way that the placeholder replacement works is by using the key sent in the WebSocket broadcast to select the `<var>` tag with the matching `data-promise` attribute.
-This HTML-output method does not work well for all situations, of course, but when HTML or raw data needs to be displayed it is rather convenient.
+This HTML-output method does not work well for all situations, of course, but it is rather convenient when HTML or any other data needs to be displayed directly.

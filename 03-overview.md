@@ -12,8 +12,8 @@ The client is still free to do whatever it needs to with the data, and the data 
 This process has several inherent advantages over the typical AJAX workflow.
 For one thing, there is no gap between the server's initial response and the initiation of follow-up data requests.
 Requests for more data are made slightly before the initial response has been sent.
-The client never actually initiates requests for more data, and thus it does not have to wait for a web page to finish completely rendering in order to do so.
+The client never actually initiates requests for more data itself, and thus it does not have to wait for a web page to finish completely rendering in order to do so.
 
 This process also effectively reduces the number of requests made.
 The server sends just as much data back via responses, but the requests themselves don't actually get made by the client, and therefore do not have any latency at all.
-Only one request ever really gets made, which is the very first request the client made to the server to load the main web page.
+Only two requests ever really gets made, which are the very first request the client makes to the server to load the main web page, and the initial WebSocket connection.

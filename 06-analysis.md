@@ -34,7 +34,7 @@ That is, by the time the client loads the page and establishes a WebSocket conne
 This is because although the timeout finishes immediately after the original endpoint was hit, it still requires the additional request of establishing the socket connection in order to receive the data.
 In the trials with the higher timeouts, however, there is a period of time where the stream method benefits from making the timeout call as soon as the endpoint is hit.
 The data supports this theory because in every case of the timeout test (except the \SI{0}{\ms} case), the stream method is actually around \SI{600}{\ms} faster than the other two methods.
-This time of \SI{600}{\ms} happens to be around the time it takes to load a basic page from the web server (see \autoref{table:base}).
+This time of \SI{600}{\ms} happens to be around the time taken to load a basic page from the web server (see \autoref{table:base}).
 
 It is worth noting that in the timeout test every trial for the stream workflow is extraordinarily close between repeated trials.
 Repeated trials in every other scenario were found to vary by around \num{100}--\num{200} \si{\ms} between tests without any variables changing, and the values seen in the [data](#data) section are averages of these numbers.
@@ -43,7 +43,7 @@ The timeout test is the only test found to exhibit this behavior, and only for t
 
 The [series](#series) and [parallel](#parallel) tests show much more promising results for the stream method.
 In the series scenario, the results of the AJAX and stream workflows very quickly diverge.
-Whereas the AJAX method yields values on a linearly increasing scale, the stream method instead appears to adhere to more of a logarithmic scale.
+Whereas the AJAX method yields values on a linearly increasing scale, the stream method instead appears to adhere to more of a logarithmic growth.
 Here the benefits of WebSockets really start to become evident, as depicted in \autoref{fig:dataSeries}.
 The reason the stream method performs so much better than AJAX when operating with serial requests is that there is only one single WebSocket connection, which remains open throughout the entire endeavor.
 In contrast, each one of the requests in the AJAX method makes a separate call to the server, creating a new connection.
